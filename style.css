@@ -9,10 +9,9 @@ html {
 }
 
 body {
-
     background-color: #000000;
     overflow: visible !important;
-
+    cursor: none;
 }
 
 .cursor-dot,
@@ -27,15 +26,107 @@ body {
 }
 
 .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #ff790c;
-    box-shadow: 0 0 10px #ff790c, 0 0 20px #ff790c;
+    width: 6px;
+    height: 6px;
+    background-color: #ff5a0d;
+    box-shadow: 0 0 10px #ff5a0d, 0 0 20px #ff3d00;
 }
 
 .cursor-outline {
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(255, 61, 0, 0.5);
-    transition: all 0.2s;
+    border: 2px solid #ff5a0d;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cursor-dot.magnifying {
+    background-color: rgb(0, 212, 250);
+    box-shadow: 0 0 10px rgb(0, 212, 250), 0 0 20px rgb(0, 212, 250);
+}
+
+.cursor-outline.magnifying {
+    width: 75px;
+    height: 75px;
+    border-color: rgb(0, 212, 250);
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.192), inset 0 0 20px rgba(250, 250, 250, 0);
+}
+
+.cursor-outline.magnifying::before {
+    content: '';
+    position: absolute;
+
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.btn-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cta-btn {
+    margin-bottom: 9rem;
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #ff3d00;
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.cta-btn:hover {
+    border-color: #ff3d00;
+    color: white;
+}
+
+.cta-btn:hover::before {
+    left: 0;
+}
+
+
+.btn-text {
+    display: inline-block;
+    position: relative;
+    letter-spacing: 8.5px;
+    font-size: 1.3rem;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.btn-text .letter {
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center bottom;
+}
+
+/* Letter magnified under cursor  */
+.btn-text .letter.magnified {
+    transform: scale(1.6) translateY(-5px);
+    color: #121416;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    z-index: 10;
 }
